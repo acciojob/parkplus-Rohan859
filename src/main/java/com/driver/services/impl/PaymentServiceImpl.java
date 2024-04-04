@@ -37,7 +37,7 @@ public class PaymentServiceImpl implements PaymentService {
         //check if amountSent is less than bill or not
         if(amountSent<bill)
         {
-            throw new Exception("Insufficient Amount")
+            throw new Exception("Insufficient Amount");
         }
 
 
