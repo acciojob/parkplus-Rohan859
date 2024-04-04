@@ -61,6 +61,9 @@ public class PaymentServiceImpl implements PaymentService {
             //mark payment as completed
             payment.setPaymentCompleted(true);
 
+            //add payment in reservation
+            // as one to one mapping
+            reservation.setPayment(payment);
             //save then payment into db
             paymentRepository2.save(payment);
 
