@@ -22,6 +22,10 @@ public class Reservation {
 
     private int numberOfHours;
 
+
+    public Reservation() {
+    }
+
     public int getId() {
         return id;
     }

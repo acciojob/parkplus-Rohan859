@@ -13,7 +13,12 @@ public class Payment {
     private Reservation reservation;
 
     boolean paymentCompleted;
+
+    @Enumerated(value = EnumType.STRING)
     PaymentMode paymentMode;
+
+    public Payment() {
+    }
 
     public int getId() {
         return id;

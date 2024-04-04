@@ -16,6 +16,9 @@ public class User {
     private String phoneNumber;
     private String password;
 
+    public User() {
+    }
+
     public int getId() {
         return id;
     }
