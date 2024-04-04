@@ -37,80 +37,42 @@ public class PaymentServiceImpl implements PaymentService {
         //check if amountSent is less than bill or not
         if(amountSent<bill)
         {
-            throw new Exception("Insufficient Amount");
+            throw new Exception("Insufficient Amount")
         }
 
-        if(mode.equalsIgnoreCase("cash") || mode.equalsIgnoreCase("card") || mode.equalsIgnoreCase("upi"))
-        {
-            Payment payment=new Payment();
 
 
-            if(mode.equalsIgnoreCase("cash"))
-            {
-                payment.setPaymentMode(PaymentMode.CASH);
-            }
-            else if(mode.equalsIgnoreCase("card"))
-            {
-                payment.setPaymentMode(PaymentMode.CARD);
-            }
-            else
-            {
-                payment.setPaymentMode(PaymentMode.UPI);
-            }
-
-            //mark payment as completed
-            payment.setPaymentCompleted(true);
-
-            //add payment in reservation
-            // as one to one mapping
-            payment.setReservation(reservation);
-            reservation.setPayment(payment);
-            //save then payment into db
-            reservationRepository2.save(reservation);
-
-            return payment;
-
-        }
-        else
+    //if payment mode is not matched
+        if(!("cash".equals(mode.toLowerCase()) || "card".equals(mode.toLowerCase()) || "upi".equals(mode.toLowerCase())))
         {
             throw new Exception("Payment mode not detected");
         }
 
-//        PaymentMode cash=PaymentMode.CASH;
-//        PaymentMode card=PaymentMode.CARD;
-//        PaymentMode upi=PaymentMode.UPI;
-//
-//        //if payment mode is not matched
-//        if(!(cash.equals(mode) || card.equals(mode) || upi.equals(mode)))
-//        {
-//            throw new Exception("Payment mode not detected");
-//        }
-//
-//
-//        //do the payment staffs
-//        Payment payment=new Payment();
-//        payment.setReservation(reservation);
-//
-//        //add payment mode
-//        if(cash.equals(mode))
-//        {
-//            payment.setPaymentMode(PaymentMode.CASH);
-//        }
-//        else if(card.equals(mode))
-//        {
-//            payment.setPaymentMode(PaymentMode.CARD);
-//        }
-//        else
-//        {
-//            payment.setPaymentMode(PaymentMode.UPI);
-//        }
-//
-//        //mark payment as completed
-//        payment.setPaymentCompleted(true);
-//
-//        //save then payment into db
-//        paymentRepository2.save(payment);
-//
-//        return payment;
+
+        //do the payment staffs
+        Payment payment=new Payment();
+        payment.setReservation(reservation);
+
+        //add payment mode
+        if("cash".equals(mode.toLowerCase()))
+        {
+            payment.setPaymentMode(PaymentMode.CASH);
+        }
+        else if("card".equals(mode.toLowerCase()))
+        {
+            payment.setPaymentMode(PaymentMode.CARD);
+        }
+        else
+        {
+            payment.setPaymentMode(PaymentMode.UPI);
+        }
+
+        //mark payment as completed
+        payment.setPaymentCompleted(true);
+
+        //save then payment into db
+        paymentRepository2.save(payment);
+
+        return payment;
     }
 }
