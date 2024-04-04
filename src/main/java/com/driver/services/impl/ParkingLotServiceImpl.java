@@ -66,6 +66,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         //set occupied as false
         spot.setOccupied(Boolean.FALSE);
 
+        parkingLot.getSpotList().add(spot);
 
         //save into spotRepository
         spotRepository1.save(spot);
