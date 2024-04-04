@@ -43,7 +43,7 @@ public class PaymentServiceImpl implements PaymentService {
         if(mode.equalsIgnoreCase("cash") || mode.equalsIgnoreCase("card") || mode.equalsIgnoreCase("upi"))
         {
             Payment payment=new Payment();
-            payment.setReservation(reservation);
+
 
             if(mode.equalsIgnoreCase("cash"))
             {
@@ -63,6 +63,7 @@ public class PaymentServiceImpl implements PaymentService {
 
             //add payment in reservation
             // as one to one mapping
+            payment.setReservation(reservation);
             reservation.setPayment(payment);
             //save then payment into db
             paymentRepository2.save(payment);
